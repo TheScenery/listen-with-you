@@ -2,7 +2,7 @@
 
 Use Netease music to listen to the same music at the same time
 
-inspire by 
+inspired by 
 
 [Binaryify/NeteaseCloudMusicApi](https://github.com/Binaryify/NeteaseCloudMusicApi)
 
