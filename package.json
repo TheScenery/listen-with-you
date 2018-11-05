@@ -1,0 +1,19 @@
+{
+  "name": "listen-with-you",
+  "version": "1.0.0",
+  "description": "A music app based on NetEase Cloud Music that can listen the same sone with your friend",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TheScenery/listen-with-you.git"
+  },
+  "author": "Wenbin Liu",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/TheScenery/listen-with-you/issues"
+  },
+  "homepage": "https://github.com/TheScenery/listen-with-you#readme"
+}
