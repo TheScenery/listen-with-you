@@ -2,8 +2,10 @@
   "name": "listen-with-you",
   "version": "1.0.0",
   "description": "A music app based on NetEase Cloud Music that can listen the same sone with your friend",
-  "main": "index.js",
   "scripts": {
+    "dev": "webpack --config ./src/client/webpack.config.js --progress --colors --watch",
+    "start": "npm run dev & webpack-dev-server --config ./src/client/webpack.config.js",
+    "build": "webpack --config ./src/client/webpack.config.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -15,5 +17,21 @@
   "bugs": {
     "url": "https://github.com/TheScenery/listen-with-you/issues"
   },
-  "homepage": "https://github.com/TheScenery/listen-with-you#readme"
+  "homepage": "https://github.com/TheScenery/listen-with-you#readme",
+  "dependencies": {
+    "@babel/polyfill": "^7.0.0",
+    "react": "^16.6.0",
+    "react-dom": "^16.6.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.1.2",
+    "@babel/core": "^7.1.2",
+    "@babel/preset-env": "^7.1.0",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.4",
+    "html-webpack-plugin": "^3.2.0",
+    "webpack": "^4.25.1",
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.10"
+  }
 }
