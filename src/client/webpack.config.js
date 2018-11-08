@@ -39,9 +39,4 @@ module.exports = {
             }
         ]
     },
-    devtool: 'inline-source-map',
-    devServer: {
-        open: true,
-        contentBase: path.resolve(__dirname, 'build')
-    },
 };
