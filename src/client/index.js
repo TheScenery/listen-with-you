@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import ReactDom from 'react-dom';
-import Player from './component/Player';
+import MainPanel from './component/MainPanel';
 import './index.scss';
 
 class App extends Component {
     render() {
         return (
             <div className="app-container">
-                <Player />
+                <MainPanel />
             </div>
         );
     }
