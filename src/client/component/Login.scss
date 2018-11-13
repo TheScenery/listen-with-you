@@ -7,5 +7,24 @@
         border-radius: 10px;
         cursor: pointer;
         user-select: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .login-user-info-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 5px;
+        .label {
+            margin: 0 5px;
+        }
+    }
+    .button-container {
+        display: flex;
+        justify-content: space-between;
+        .button {
+            width: 100px;
+        }
     }
 }
