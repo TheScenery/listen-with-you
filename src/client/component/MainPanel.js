@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import './MainPanel.scss'
-import Login from './Login';
 
-export default class App extends Component {
+export default class MainPanel extends Component {
     render() {
         return (
             <div className="main-panel-container">
-                <Login />
+                You have login!
             </div>
         )
     }

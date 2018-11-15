@@ -1,0 +1,19 @@
+.app-container {
+    position: fixed;
+    display: flex;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    justify-content: center;
+    align-items: center;
+    .main-container {
+        height: 667px;
+        width: 375px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: whitesmoke;
+        box-shadow: 0 0 15px gray;
+    }
+}

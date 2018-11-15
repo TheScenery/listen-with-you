@@ -1,7 +1,13 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import './Login.scss';
+import { signIn } from '../utils/authUtils';
 
 export default class Login extends Component {
+    static propTypes = {
+        history: PropTypes.object,
+    }
+
     constructor(props) {
         super(props);
         this.state = {
@@ -30,8 +36,13 @@ export default class Login extends Component {
 
     login() {
         const { user, password } = this.state;
-        console.log('userName', user);
-        console.log('password', password);
+        const { history } = this.props;
+        signIn(this.state.loginType, user, password, (res) => {
+            console.log(res);
+            history.replace('/main');
+        }, (error) => {
+            console.log(error);
+        })
         this.reset();
     }
 
