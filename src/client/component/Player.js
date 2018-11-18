@@ -1,14 +1,40 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import _ from 'lodash';
+import { getSongInfo } from '../utils/apiUtils';
+import './Player.scss';
 
 export default class Player extends Component {
-    static propTypes= {
+    static propTypes = {
         song: PropTypes.object,
     }
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            songInfo: {},
+        }
+        this.getSongInfo();
+    }
+
+    componentDidUpdate(nextProps) {
+        if (!_.isEqual(nextProps.song, this.props.song)) {
+            this.getSongInfo();
+        }
+    }
+
+    getSongInfo() {
+        const { song } = this.props;
+        getSongInfo(song && song.id, (info) => {
+            this.setState({ songInfo: info[0] })
+        })
+    }
+
     render() {
+        const { songInfo } = this.state;
         return (
-            <div>
-                <audio autoPlay="autoPlay" controls="controls" src="http://m10.music.126.net/20181109005840/7a68024224b6e65bb283157a269db953/ymusic/03e2/93ce/3e32/7683301af072e4b50f2f53c6f4f2e3d9.mp3">You browser doesn't support audio</audio>
+            <div className="player">
+                <audio autoPlay controls="controls" src={songInfo.url}>You browser doesn't support audio</audio>
             </div>
         )
     }

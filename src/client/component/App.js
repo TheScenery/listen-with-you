@@ -4,7 +4,7 @@ import MainPanel from './MainPanel';
 import Login from './Login'
 import { Route, withRouter } from 'react-router-dom';
 import './App.scss';
-import { authenticate } from '../utils/authUtils';
+import { getLoginStatus } from '../utils/authUtils';
 
 class App extends Component {
     static propTypes = {
@@ -13,7 +13,7 @@ class App extends Component {
 
     componentWillMount() {
         const history = this.props.history;
-        authenticate(() => history.replace('/main'), () => history.replace('login'));
+        getLoginStatus(() => history.replace('/main'), () => history.replace('login'));
     }
 
     render() {

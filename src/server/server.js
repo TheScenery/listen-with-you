@@ -37,7 +37,7 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 
 // cache
-app.use(cache('2 minutes', ((req, res) => res.statusCode === 200)))
+// app.use(cache('2 minutes', ((req, res) => res.statusCode === 200)))
 
 //static
 app.use(express.static('dist'))
@@ -72,7 +72,7 @@ fs.readdirSync(path.join(__dirname, 'module')).reverse().forEach(file => {
     })
 })
 
-const clientSideRoutes = ['/login'];
+const clientSideRoutes = ['/login', '/main'];
 clientSideRoutes.forEach(r => app.use(r, (req, res) => {
     res.set('Content-Type', 'text/html');
     res.sendFile(path.resolve(__dirname, '../../dist/index.html'))

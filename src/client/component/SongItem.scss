@@ -1,0 +1,12 @@
+.song-item-container {
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+    .song-name {
+        flex: 1 1 auto;
+    }
+    .singer-name {
+        width: 100px;
+        flex: 0 0 auto;
+    }
+}

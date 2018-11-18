@@ -6,6 +6,14 @@ const userInfo = {
     password: null,
 }
 
+export function getLoginStatus(success, error) {
+    sendRequest('/api/login/status').then((res) => {
+        success && success(res.data);
+    }).catch((err) => {
+        error && error(err);
+    })
+}
+
 export function authenticate(success, error) {
     sendRequest(`/api/login${userInfo.loginType === 'phone' ? '/cellphone' : ''}`, { phone: userInfo.loginID, password: userInfo.password }).then((res) => {
         if (res && res.status === 200) {
