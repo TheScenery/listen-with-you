@@ -8,3 +8,11 @@ inspired by
 
 
 [disoul/electron-cloud-music](https://github.com/disoul/electron-cloud-music)
+
+## How to use
+```bash
+npm install
+npm start
+```
+
+visit [localhost:10113](localhost:10113) in browser
