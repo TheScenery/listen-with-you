@@ -7,6 +7,7 @@ import './Player.scss';
 export default class Player extends Component {
     static propTypes = {
         song: PropTypes.object,
+        nextSong: PropTypes.func,
     }
 
     constructor(props) {
@@ -31,10 +32,11 @@ export default class Player extends Component {
     }
 
     render() {
+        const { nextSong } = this.props;
         const { songInfo } = this.state;
         return (
             <div className="player">
-                <audio autoPlay controls="controls" src={songInfo.url}>You browser doesn't support audio</audio>
+                <audio autoPlay controls="controls" src={songInfo.url} onEnded={nextSong}>You browser doesn't support audio</audio>
             </div>
         )
     }

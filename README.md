@@ -1,6 +1,6 @@
 # listen-with-you
 
-Use Netease music to listen to the same music at the same time
+Try to use Netease music to listen to the same music at the same time
 
 inspired by 
 

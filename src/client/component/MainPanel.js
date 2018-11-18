@@ -16,6 +16,7 @@ export default class MainPanel extends Component {
             songs: [],
         }
         this.playSong = this.playSong.bind(this);
+        this.nextSong = this.nextSong.bind(this);
     }
 
     componentDidMount() {
@@ -40,6 +41,12 @@ export default class MainPanel extends Component {
         this.setState({ playingSong: song })
     }
 
+    nextSong() {
+        const { playingSong, songs } = this.state;
+        const currentIndex = songs.findIndex(song => song.id === (playingSong && playingSong.id));
+        this.setState({ playingSong: songs[(currentIndex + 1) % songs.length] })
+    }
+
     render() {
         const { nickname, avatarUrl, songs, playingSong } = this.state;
         return (
@@ -52,7 +59,7 @@ export default class MainPanel extends Component {
                     {songs.map((song, index) => (<SongItem key={index} song={song} play={() => this.playSong(song)} />))}
                 </div>
                 <div className="player-container">
-                    <Player song={playingSong} />
+                    <Player song={playingSong} nextSong={this.nextSong} />
                 </div>
             </div>
         )
