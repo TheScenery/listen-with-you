@@ -17,3 +17,12 @@ export function getSongInfo(id, success, error) {
         error && error(err);
     })
 }
+
+export function getLatestMessage(userId, success, error) {
+    sendRequest('/api/msg/private/history', { userId, limit: 1 }).then((res) => {
+        const data = res.data;
+        success && success(data.msgs)
+    }).catch((err) => {
+        error && error(err);
+    })
+}

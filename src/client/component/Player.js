@@ -19,16 +19,18 @@ export default class Player extends Component {
     }
 
     componentDidUpdate(nextProps) {
-        if (!_.isEqual(nextProps.song, this.props.song)) {
+        if (!_.isEqual(nextProps.player.activeSongId, this.props.player.activeSongId)) {
             this.getSongInfo();
         }
     }
 
     getSongInfo() {
-        const { song } = this.props;
-        getSongInfo(song && song.id, (info) => {
-            this.setState({ songInfo: info[0] })
-        })
+        const { player: { activeSongId } } = this.props;
+        if (activeSongId) {
+            getSongInfo(activeSongId, (info) => {
+                this.setState({ songInfo: info[0] })
+            })
+        }
     }
 
     render() {

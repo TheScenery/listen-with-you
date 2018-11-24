@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import MainPanel from './MainPanel';
+import MainPanel from '../containers/MainPanelContainer';
 import Login from './Login'
 import { Route, withRouter } from 'react-router-dom';
 import './App.scss';

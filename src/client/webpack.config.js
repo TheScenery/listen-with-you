@@ -4,10 +4,13 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
     mode: 'development',
-    entry: path.resolve(__dirname, 'index.js'),
+    entry: {
+        main: path.resolve(__dirname, 'index.js'),
+        messageWorker: path.resolve(__dirname, 'messageWorker.js'),
+    },
     output: {
         path: path.resolve(__dirname, '../../dist'),
-        filename: 'bundle.js'
+        filename: '[name].js'
     },
     devtool: 'source-map' ,
     plugins: [
@@ -15,6 +18,7 @@ module.exports = {
             template: path.resolve(__dirname, 'index.html'),
             filename: 'index.html',
             inject: 'body',
+            chunks: ['main'],
         })
     ],
     module: {

@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import './MainPanel.scss'
 import { getLoginStatus } from '../utils/authUtils';
-import { getRecommendSongs } from '../utils/apiUtils';
 import SongItem from './SongItem';
-import Player from './Player';
+import Player from '../containers/PlayerContainer';
 
 export default class MainPanel extends Component {
+    static propTypes = {
+        mainPanel: PropTypes.object,
+        playSong: PropTypes.func,
+        initLoad: PropTypes.func,
+    }
 
     constructor(props) {
         super(props);
@@ -13,10 +18,12 @@ export default class MainPanel extends Component {
             userId: '',
             nickname: '',
             avatarUrl: '',
-            songs: [],
         }
-        this.playSong = this.playSong.bind(this);
-        this.nextSong = this.nextSong.bind(this);
+    }
+
+    componentWillMount() {
+        const { initLoad } = this.props;
+        initLoad();
     }
 
     componentDidMount() {
@@ -30,25 +37,11 @@ export default class MainPanel extends Component {
         }, (err) => {
             console.log(err);
         });
-        getRecommendSongs((songs) => {
-            this.setState({ songs })
-        }, (err) => {
-            console.log(err);
-        });
-    }
-
-    playSong(song) {
-        this.setState({ playingSong: song })
-    }
-
-    nextSong() {
-        const { playingSong, songs } = this.state;
-        const currentIndex = songs.findIndex(song => song.id === (playingSong && playingSong.id));
-        this.setState({ playingSong: songs[(currentIndex + 1) % songs.length] })
     }
 
     render() {
-        const { nickname, avatarUrl, songs, playingSong } = this.state;
+        const { nickname, avatarUrl } = this.state;
+        const { mainPanel: { songList }, playSong } = this.props;
         return (
             <div className="main-panel-container">
                 <div className="user-info-container">
@@ -56,10 +49,10 @@ export default class MainPanel extends Component {
                     <img src={avatarUrl} alt="avatar"></img>
                 </div>
                 <div className="song-list">
-                    {songs.map((song, index) => (<SongItem key={index} song={song} play={() => this.playSong(song)} />))}
+                    {songList.map((song, index) => (<SongItem key={index} song={song} play={() => playSong(song.id)} />))}
                 </div>
                 <div className="player-container">
-                    <Player song={playingSong} nextSong={this.nextSong} />
+                    <Player />
                 </div>
             </div>
         )
