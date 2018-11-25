@@ -1,4 +1,5 @@
 import { sendRequest } from "./requestUtils";
+import _ from 'lodash';
 
 const userInfo = {
     loginType: null,
@@ -6,8 +7,13 @@ const userInfo = {
     password: null,
 }
 
+export function getUserInfo() {
+    return userInfo;
+}
+
 export function getLoginStatus(success, error) {
     sendRequest('/api/login/status').then((res) => {
+        _.merge(userInfo, res.data.profile);
         success && success(res.data);
     }).catch((err) => {
         error && error(err);

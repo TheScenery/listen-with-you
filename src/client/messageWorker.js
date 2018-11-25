@@ -1,7 +1,7 @@
 import { getLatestMessage } from "./utils/apiUtils";
 
-setInterval(()=> getLatestMessage('', (res) => {
-    console.log(res);
+setInterval(()=> getLatestMessage('userID', (res) => {
+    self.postMessage(res);
 }), 1000)
 
 self.onmessage = (e) => {

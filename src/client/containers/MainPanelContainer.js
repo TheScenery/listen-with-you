@@ -9,6 +9,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
     playSong: Actions.playSong,
     initLoad: Actions.initLoad,
+    loadPlayList: Actions.loadPlayList,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(MainPanel)

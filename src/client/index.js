@@ -7,10 +7,13 @@ import App from './component/App';
 import { player, mainPanel } from './reducers/reducers';
 import { request, logger } from './middlewares'
 import './index.scss';
+import { initMessageHandler } from './workerHandler';
 
-// const messageWorker = new Worker('messageWorker.js');
+const messageWorker = new Worker('messageWorker.js');
 
 const store = createStore(combineReducers({ player, mainPanel }), applyMiddleware(logger, request));
+
+initMessageHandler(store, messageWorker);
 
 window.store = store;
 

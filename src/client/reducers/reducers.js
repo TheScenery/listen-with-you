@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import Actions from './actions'
 
-const { playSong, nextSong, receiveSongList } = Actions;
+const { playSong, nextSong, receivePlayList, loadPlayList, receivePlayListDetail } = Actions;
 
 export function player(state = { activeSongId: null, activeSongList: [] }, action) {
     const type = action.type;
@@ -22,8 +22,12 @@ export function player(state = { activeSongId: null, activeSongList: [] }, actio
 export function mainPanel(state = { songList: [], lists: [] }, action) {
     const type = action.type;
     switch (type) {
-        case receiveSongList:
-            return { ...state, songList: action.songList }
+        case receivePlayList:
+            return { ...state, playList: action.playList }
+        case loadPlayList:
+            return { ...state, activePlayList: action.id }
+        case receivePlayListDetail:
+            return { ...state, playListDetail: action.playListDetail }
         default:
             return state
     }

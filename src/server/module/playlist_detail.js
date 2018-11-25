@@ -3,11 +3,13 @@
 module.exports = (query, request) => {
     const data = {
         id: query.id,
-        n: 100000,
-        s: query.s || 8
+        n: 1000,
+        limit: 1000,
+        total: true,
+        offset: 0,
     }
     return request(
         'POST', `http://music.163.com/weapi/v3/playlist/detail`, data,
-        {crypto: 'weapi', cookie: query.cookie, proxy: query.proxy}
+        {crypto: 'linuxapi', cookie: query.cookie, proxy: query.proxy}
     )
 }

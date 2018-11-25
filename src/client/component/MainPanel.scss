@@ -19,10 +19,25 @@
             border-radius: 20px;
         }
     }
-    .song-list {
+    .main-view-container {
+        display: flex;
         flex: 1 1 auto;
-        overflow-y: auto;
-        padding: 5px 10px;
+        .play-lists-container {
+            width: 200px;
+            flex: 0 0 auto;
+            padding: 5px 10px;
+            .play-list {
+                padding: 5px 10px;
+                cursor: pointer;
+            }
+            border-right: 1px solid gray;
+            overflow-y: auto;
+        }
+        .songs-container {
+            flex: 1 1 auto;
+            overflow-y: auto;
+            padding: 5px 10px;
+        }
     }
     .player-container {
         height: 60px;
