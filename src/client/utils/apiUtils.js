@@ -1,5 +1,6 @@
 import { sendRequest } from "./requestUtils";
 import { getUserInfo, getLoginStatus } from "./authUtils";
+import { resolve } from "url";
 
 export function getRecommendSongs(success, error) {
     sendRequest('/api/recommend/songs').then((res) => {
@@ -51,5 +52,13 @@ export function getLatestMessage(userId, success, error) {
         success && success(data.msgs)
     }).catch((err) => {
         error && error(err);
+    })
+}
+
+export function getFollows(userId) {
+    return new Promise((resolve, reject) => {
+        sendRequest('/api/user/follows', { uid: userId }).then((res) => {
+            resolve(res.data.follow)
+        }).catch((err) => reject(err))
     })
 }
