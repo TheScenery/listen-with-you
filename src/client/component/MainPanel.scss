@@ -3,22 +3,6 @@
     width: 100%;
     display: flex;
     flex-direction: column;
-    .user-info-container {
-        flex: 0 0 auto;
-        height: 40px;
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
-        border-bottom: 1px solid gray;
-        padding: 10px;
-        .user-name {
-            margin: 0 10px;
-        }
-        img {
-            height: 40px;
-            border-radius: 20px;
-        }
-    }
     .main-view-container {
         display: flex;
         flex: 1 1 auto;
