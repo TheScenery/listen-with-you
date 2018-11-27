@@ -1,7 +1,31 @@
 .follow-list-container {
     position: absolute;
-    width: 200px;
-    height: 400px;
     background-color: whitesmoke;
     box-shadow: 0 0 15px gray;
+    min-width: 300px;
+    min-height: 100px;
+    padding: 20px;
+    border-radius: 5px;
+    .follow-user-info {
+        display: flex;
+        align-items: center;
+        box-shadow: 0 0 15px gray;
+        padding: 10px 5px;
+        border-radius: 10px;
+        width: 290px;
+        .avatar {
+            flex: 0 0 auto;
+        }
+        .user-name {
+            flex: 1 1 auto;
+        }
+        .follow-button {
+            flex: 0 0 auto;
+            background-color: #4786F7;
+            border-radius: 10px;
+            padding: 5px;
+            cursor: pointer;
+            user-select: none;
+        }
+    }
 }
