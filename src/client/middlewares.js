@@ -1,5 +1,6 @@
 import ActionTypes from "./reducers/actions";
-import { getRecommendSongs, getPlayList, getPlayListDetail } from "./utils/apiUtils";
+import { getRecommendSongs, getPlayList, getPlayListDetail, senRequestToListenWith } from "./utils/apiUtils";
+import { sendMessageToWorker } from "./workerHandler";
 
 export const logger = ({ getState }) => next => action => {
     console.log('logger: dispatch action', action);
@@ -25,6 +26,14 @@ export const request = ({ getState, dispatch }) => next => action => {
                     dispatch({ type: ActionTypes.receivePlayListDetail, playListDetail: listDetail })
                 });
             }
+            break;
+        case ActionTypes.requestToListenWith:
+            senRequestToListenWith(action.id).then((res) => {
+                console.log(res);
+            }).catch((err) => console.log(err));
+            break;
+        case ActionTypes.startListenAllUserMsgs:
+            sendMessageToWorker({ action: 'startGetUserMsgs', userId: action.id })
             break;
         default:
             break;

@@ -9,11 +9,11 @@ import { request, logger } from './middlewares'
 import './index.scss';
 import { initMessageHandler } from './workerHandler';
 
-// const messageWorker = new Worker('messageWorker.js');
+const messageWorker = new Worker('messageWorker.js');
 
 const store = createStore(combineReducers({ player, mainPanel, listenWithInfo }), applyMiddleware(logger, request));
 
-// initMessageHandler(store, messageWorker);
+initMessageHandler(store, messageWorker);
 
 window.store = store;
 

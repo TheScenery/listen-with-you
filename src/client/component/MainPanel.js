@@ -12,6 +12,7 @@ export default class MainPanel extends Component {
         playSong: PropTypes.func,
         initLoad: PropTypes.func,
         loadPlayList: PropTypes.func,
+        startListenAllUserMsgs: PropTypes.func,
     }
 
     constructor(props) {
@@ -30,7 +31,8 @@ export default class MainPanel extends Component {
         getLoginStatus((data) => {
             this.setState({
                 userInfo: data.profile,
-            })
+            });
+            this.props.startListenAllUserMsgs(data.profile.userId);
         }, (err) => {
             console.log(err);
         });

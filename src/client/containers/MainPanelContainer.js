@@ -10,6 +10,7 @@ const mapDispatchToProps = {
     playSong: Actions.playSong,
     initLoad: Actions.initLoad,
     loadPlayList: Actions.loadPlayList,
+    startListenAllUserMsgs: Actions.startListenAllUserMsgs,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(MainPanel)

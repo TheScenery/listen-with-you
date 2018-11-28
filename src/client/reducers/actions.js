@@ -7,6 +7,7 @@ const ActionTypes = {
     receivePlayListDetail: 'receivePlayListDetail',
     requestToListenWith: 'requestToListenWith',
     forgetListenWith: 'forgetListenWith',
+    startListenAllUserMsgs: 'startListenAllUserMsgs',
 };
 
 export const Actions = {
@@ -15,7 +16,8 @@ export const Actions = {
     initLoad: () => ({ type: ActionTypes.initLoad }),
     loadPlayList: (id) => ({ type: ActionTypes.loadPlayList, id }),
     requestToListenWith: (id) => ({ type: ActionTypes.requestToListenWith, id }),
-    forgetListenWith: () => ({ type: ActionTypes.forgetListenWith })
+    forgetListenWith: () => ({ type: ActionTypes.forgetListenWith }),
+    startListenAllUserMsgs: (id) => ({ type: ActionTypes.startListenAllUserMsgs, id }),
 }
 
 export default ActionTypes;

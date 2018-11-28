@@ -10,6 +10,6 @@ module.exports = (query, request) => {
     }
     return request(
         'POST', `http://music.163.com/weapi/msg/private/send`, data,
-        {crypto: 'weapi', cookie: query.cookie, proxy: query.proxy}
+        {crypto: 'linuxapi', cookie: query.cookie, proxy: query.proxy}
     )
 }

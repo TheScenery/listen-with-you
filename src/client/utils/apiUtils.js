@@ -1,6 +1,5 @@
 import { sendRequest } from "./requestUtils";
-import { getUserInfo, getLoginStatus } from "./authUtils";
-import { resolve } from "url";
+import { getLoginStatus } from "./authUtils";
 
 export function getRecommendSongs(success, error) {
     sendRequest('/api/recommend/songs').then((res) => {
@@ -60,5 +59,21 @@ export function getFollows(userId) {
         sendRequest('/api/user/follows', { uid: userId }).then((res) => {
             resolve(res.data.follow)
         }).catch((err) => reject(err))
+    })
+}
+
+export function senRequestToListenWith(userId) {
+    return new Promise((resolve, reject) => {
+        sendRequest('/api/send/text', { user_ids: userId, msg: `requestToListenWith&userId=${userId}` }).then((res) => {
+            resolve(res.data);
+        }).catch((err) => reject(err));
+    })
+}
+
+export function getAllUserMsgs(uid) {
+    return new Promise((resolve, reject) => {
+        sendRequest('/api/msg/private/users', { uid }).then((res) => {
+            resolve(res.data.msgs);
+        }).catch((err) => reject(err));
     })
 }
