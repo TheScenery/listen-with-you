@@ -46,7 +46,7 @@ export function listenWithInfo(state = {}, action) {
             return { ...state, sharedWithId: action.id }
         case approvaledListenWith:
             if (action.id === state.listenWithId) {
-                return { ...state, status: 'approved' };
+                return { ...state, status: 'listening' };
             }
             return state;
         default:

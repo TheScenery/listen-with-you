@@ -26,7 +26,7 @@ function processReceiveMessage(store, messageInfo) {
             });
             break;
         }
-        case 'approval': {
+        case 'approve': {
             const { userId, nickname } = fromUser;
             console.log('user', nickname, 'has approval your request to listen with');
             store.dispatch({ type: ActionTypes.approvaledListenWith, id: userId });
