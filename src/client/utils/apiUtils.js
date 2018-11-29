@@ -64,7 +64,15 @@ export function getFollows(userId) {
 
 export function senRequestToListenWith(userId) {
     return new Promise((resolve, reject) => {
-        sendRequest('/api/send/text', { user_ids: userId, msg: `requestToListenWith&userId=${userId}` }).then((res) => {
+        sendRequest('/api/send/text', { user_ids: userId, msg: `requestToListenWith` }).then((res) => {
+            resolve(res.data);
+        }).catch((err) => reject(err));
+    })
+}
+
+export function sendApproval(userId) {
+    return new Promise((resolve, reject) => {
+        sendRequest('/api/send/text', { user_ids: userId, msg: `approve` }).then((res) => {
             resolve(res.data);
         }).catch((err) => reject(err));
     })

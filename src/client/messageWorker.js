@@ -9,11 +9,12 @@ self.startGetUserMsgs = (uid) => {
     setInterval(() => getAllUserMsgs(uid).then((msgs) => {
         const newMessageUser = msgs.find(msg => msg.newMsgCount > 0 && new Date() - new Date(msg.lastMsgTime) < 3000);
         if (newMessageUser) {
+            const fromUser = newMessageUser.fromUser;
             const lastMsg = JSON.parse(newMessageUser.lastMsg);
             const msg = lastMsg.msg;
             if (msg !== lastNewMsg) {
                 lastNewMsg = msg;
-                self.postMessage(msg);
+                self.postMessage({ fromUser, msg });
             }
         }
     }).catch(err => console.log(err)), 3000);

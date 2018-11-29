@@ -1,8 +1,11 @@
-import { Actions } from "./reducers/actions";
+import ActionTypes, { Actions } from "./reducers/actions";
+import { toastr } from 'react-redux-toastr'
 
 const workerManager = {};
 
-function processReceiveMessage(store, msg) {
+function processReceiveMessage(store, messageInfo) {
+    const msg = messageInfo.msg;
+    const fromUser = messageInfo.fromUser;
     console.log(msg);
     const actions = msg.split('&');
     const action = actions[0];
@@ -15,11 +18,18 @@ function processReceiveMessage(store, msg) {
             break;
         }
         case 'requestToListenWith': {
-            const userInfo = actions[1].split('=');
-            console.log(userInfo);
-            const userId = userInfo[1];
-            console.log('user', userId, 'request to listen with');
+            const { userId, nickname } = fromUser;
+            console.log('user', nickname, 'request to listen with');
+            toastr.confirm(`${nickname} request to listen with you`, {
+                onOk: () => store.dispatch({ type: ActionTypes.approveListenWithRequest, id: userId }),
+                onCancel: () => store.dispatch({ type: ActionTypes.rejectListenWithRequest, userId })
+            });
             break;
+        }
+        case 'approval': {
+            const { userId, nickname } = fromUser;
+            console.log('user', nickname, 'has approval your request to listen with');
+            store.dispatch({ type: ActionTypes.approvaledListenWith, id: userId });
         }
     }
 }

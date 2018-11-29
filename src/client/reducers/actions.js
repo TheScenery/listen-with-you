@@ -8,6 +8,9 @@ const ActionTypes = {
     requestToListenWith: 'requestToListenWith',
     forgetListenWith: 'forgetListenWith',
     startListenAllUserMsgs: 'startListenAllUserMsgs',
+    approveListenWithRequest: 'approveListenWithRequest',
+    rejectListenWithRequest: 'rejectListenWithRequest',
+    approvaledListenWith: 'approvaledListenWith',
 };
 
 export const Actions = {

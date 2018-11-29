@@ -1,7 +1,8 @@
 import _ from 'lodash';
 import Actions from './actions'
 
-const { playSong, nextSong, receivePlayList, loadPlayList, receivePlayListDetail, requestToListenWith, forgetListenWith } = Actions;
+const { playSong, nextSong, receivePlayList, loadPlayList, receivePlayListDetail, requestToListenWith,
+    forgetListenWith, approveListenWithRequest, approvaledListenWith } = Actions;
 
 export function player(state = { activeSongId: null, activeSongList: [] }, action) {
     const type = action.type;
@@ -37,10 +38,17 @@ export function listenWithInfo(state = {}, action) {
     const type = action.type;
     switch (type) {
         case requestToListenWith:
-            return { ...state, liatenWithId: action.id, status: 'pendingApproval' }
+            return { ...state, listenWithId: action.id, status: 'pendingApproval' }
         case forgetListenWith: {
             return {}
         }
+        case approveListenWithRequest:
+            return { ...state, sharedWithId: action.id }
+        case approvaledListenWith:
+            if (action.id === state.listenWithId) {
+                return { ...state, status: 'approved' };
+            }
+            return state;
         default:
             return state;
     }

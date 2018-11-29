@@ -1,5 +1,5 @@
 import ActionTypes from "./reducers/actions";
-import { getRecommendSongs, getPlayList, getPlayListDetail, senRequestToListenWith } from "./utils/apiUtils";
+import { getRecommendSongs, getPlayList, getPlayListDetail, senRequestToListenWith, sendApproval } from "./utils/apiUtils";
 import { sendMessageToWorker } from "./workerHandler";
 
 export const logger = ({ getState }) => next => action => {
@@ -35,6 +35,9 @@ export const request = ({ getState, dispatch }) => next => action => {
         case ActionTypes.startListenAllUserMsgs:
             sendMessageToWorker({ action: 'startGetUserMsgs', userId: action.id })
             break;
+        case ActionTypes.approveListenWithRequest: {
+            sendApproval(action.id);
+        }
         default:
             break;
     }
