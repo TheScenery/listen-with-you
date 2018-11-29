@@ -39,10 +39,10 @@ class FollowList extends Component {
     }
 
     getFollowButtonText(id) {
-        const { listenWithInfo: { liatenWithId, status } } = this.props;
-        if (id === liatenWithId && status === 'pendingApproval') {
+        const { listenWithInfo: { listenWithId, status } } = this.props;
+        if (id === listenWithId && status === 'pendingApproval') {
             return '等待同意';
-        } else if (status === 'listening') {
+        } else if (id === listenWithId && status === 'listening') {
             return '正在跟随';
         }
         return '跟随她的节奏';
