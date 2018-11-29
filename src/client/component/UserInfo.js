@@ -20,7 +20,7 @@ export default class UserInfo extends Component {
 
     showFollowList(event) {
         const refTargetRect = event.currentTarget.getBoundingClientRect()
-        this.setState({ showFollowList: true, followListStyle: { top: refTargetRect.top + 30, right: 10 } })
+        this.setState({ showFollowList: true, followListStyle: { top: refTargetRect.top + 30, right: refTargetRect } })
     }
 
     closeFollowList() {
