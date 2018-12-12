@@ -35,7 +35,7 @@ self.startListen = (uid) => {
         const latestMsg = msg && msg[0];
         if (new Date() - new Date(latestMsg.time) < 1000) {
             self.postMessage({
-                msg: JSON.parse(latestMsg.msg)
+                msg: JSON.parse(latestMsg.msg).msg
             });
         }
     }).catch(err => console.log(err)), 1000)
