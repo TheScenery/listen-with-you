@@ -45,12 +45,14 @@ export function getSongInfo(id, success, error) {
     })
 }
 
-export function getLatestMessage(userId, success, error) {
-    sendRequest('/api/msg/private/history', { userId, limit: 1 }).then((res) => {
-        const data = res.data;
-        success && success(data.msgs)
-    }).catch((err) => {
-        error && error(err);
+export function getLatestMessage(userId) {
+    return new Promise((resolve, reject) => {
+        sendRequest('/api/msg/private/history', { userId, limit: 1 }).then((res) => {
+            const data = res.data;
+            resolve(data.msgs);
+        }).catch((err) => {
+            reject(err);
+        })
     })
 }
 

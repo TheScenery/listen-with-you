@@ -37,7 +37,13 @@ export const request = ({ getState, dispatch }) => next => action => {
             break;
         case ActionTypes.approveListenWithRequest: {
             sendApproval(action.id);
+            sendMessageToWorker({ action: 'stopGetUserMsgs' })
+            break;
         }
+        case ActionTypes.approvaledListenWith:
+            sendMessageToWorker({ action: 'stopGetUserMsgs' })
+            sendMessageToWorker({ action: 'startListen', userId: action.id })
+            break;
         default:
             break;
     }
