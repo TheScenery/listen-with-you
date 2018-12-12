@@ -112,7 +112,7 @@ function sendMessage(userId, msg) {
 }
 
 export function sendApproval(userId) {
-    return sendMessage(userId, 'approval');
+    return sendMessage(userId, 'approve');
 }
 
 export function sendPlaySong(userId, songId) {

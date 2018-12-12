@@ -83,7 +83,7 @@ export const request = ({
         case ActionTypes.playSong:
             {
                 const state = getState();
-                const shareWithId = state.listenWithInfo.shareWithId;
+                const shareWithId = state.listenWithInfo.sharedWithId;
                 if (shareWithId) {
                     sendPlaySong(shareWithId, action.id)
                 }
