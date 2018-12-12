@@ -1,5 +1,9 @@
-import { sendRequest } from "./requestUtils";
-import { getLoginStatus } from "./authUtils";
+import {
+    sendRequest
+} from "./requestUtils";
+import {
+    getLoginStatus
+} from "./authUtils";
 
 export function getRecommendSongs(success, error) {
     sendRequest('/api/recommend/songs').then((res) => {
@@ -15,7 +19,9 @@ export function getPlayList(success, error) {
     getLoginStatus((data) => {
         const userInfo = data.profile;
         if (userInfo.userId) {
-            sendRequest('/api/user/playlist', { uid: userInfo.userId }).then((res) => {
+            sendRequest('/api/user/playlist', {
+                uid: userInfo.userId
+            }).then((res) => {
                 const data = res.data;
                 success && success(data.playlist)
             }).catch((err) => {
@@ -27,7 +33,9 @@ export function getPlayList(success, error) {
 }
 
 export function getPlayListDetail(id, success, error) {
-    sendRequest('/api/playlist/detail', { id }).then((res) => {
+    sendRequest('/api/playlist/detail', {
+        id
+    }).then((res) => {
         const data = res.data;
         success && success(data.playlist)
     }).catch((err) => {
@@ -37,7 +45,9 @@ export function getPlayListDetail(id, success, error) {
 }
 
 export function getSongInfo(id, success, error) {
-    sendRequest('/api/song/url', { id }).then((res) => {
+    sendRequest('/api/song/url', {
+        id
+    }).then((res) => {
         const data = res.data;
         success && success(data.data)
     }).catch((err) => {
@@ -47,7 +57,10 @@ export function getSongInfo(id, success, error) {
 
 export function getLatestMessage(userId) {
     return new Promise((resolve, reject) => {
-        sendRequest('/api/msg/private/history', { userId, limit: 1 }).then((res) => {
+        sendRequest('/api/msg/private/history', {
+            userId,
+            limit: 1
+        }).then((res) => {
             const data = res.data;
             resolve(data.msgs);
         }).catch((err) => {
@@ -58,7 +71,9 @@ export function getLatestMessage(userId) {
 
 export function getFollows(userId) {
     return new Promise((resolve, reject) => {
-        sendRequest('/api/user/follows', { uid: userId }).then((res) => {
+        sendRequest('/api/user/follows', {
+            uid: userId
+        }).then((res) => {
             resolve(res.data.follow)
         }).catch((err) => reject(err))
     })
@@ -66,15 +81,10 @@ export function getFollows(userId) {
 
 export function senRequestToListenWith(userId) {
     return new Promise((resolve, reject) => {
-        sendRequest('/api/send/text', { user_ids: userId, msg: `requestToListenWith` }).then((res) => {
-            resolve(res.data);
-        }).catch((err) => reject(err));
-    })
-}
-
-export function sendApproval(userId) {
-    return new Promise((resolve, reject) => {
-        sendRequest('/api/send/text', { user_ids: userId, msg: `approve` }).then((res) => {
+        sendRequest('/api/send/text', {
+            user_ids: userId,
+            msg: `requestToListenWith`
+        }).then((res) => {
             resolve(res.data);
         }).catch((err) => reject(err));
     })
@@ -82,8 +92,29 @@ export function sendApproval(userId) {
 
 export function getAllUserMsgs(uid) {
     return new Promise((resolve, reject) => {
-        sendRequest('/api/msg/private/users', { uid }).then((res) => {
+        sendRequest('/api/msg/private/users', {
+            uid
+        }).then((res) => {
             resolve(res.data.msgs);
         }).catch((err) => reject(err));
     })
+}
+
+function sendMessage(userId, msg) {
+    return new Promise((resolve, reject) => {
+        sendRequest('/api/send/text', {
+            user_ids: userId,
+            msg
+        }).then((res) => {
+            resolve(res.data);
+        }).catch((err) => reject(err));
+    })
+}
+
+export function sendApproval(userId) {
+    return sendMessage(userId, 'approval');
+}
+
+export function sendPlaySong(userId, songId) {
+    return sendMessage(userId, `play&id=${songId}`);
 }
