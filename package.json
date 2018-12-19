@@ -7,8 +7,10 @@
     "dev": "webpack --config ./src/client/webpack.config.js --progress --colors --watch",
     "serve": "node ./src/server/server.js",
     "build": "webpack --config ./src/client/webpack.config.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "electron": "electron ."
   },
+  "main": "main.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/TheScenery/listen-with-you.git"
@@ -53,6 +55,7 @@
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
     "webpack": "^4.25.1",
-    "webpack-cli": "^3.1.2"
+    "webpack-cli": "^3.1.2",
+    "electron": "^3.0.13"
   }
 }
