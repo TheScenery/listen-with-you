@@ -15,4 +15,9 @@ npm install
 npm start
 ```
 
+## Use electron to run
+```bash
+npm run electron
+```
+
 visit [localhost:10113](localhost:10113) in browser
