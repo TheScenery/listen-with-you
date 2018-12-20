@@ -11,6 +11,7 @@ const mapDispatchToProps = {
     initLoad: Actions.initLoad,
     loadPlayList: Actions.loadPlayList,
     startListenAllUserMsgs: Actions.startListenAllUserMsgs,
+    activeSongs: Actions.activeSongs,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(MainPanel)

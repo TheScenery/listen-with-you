@@ -13,6 +13,7 @@ export default class MainPanel extends Component {
         initLoad: PropTypes.func,
         loadPlayList: PropTypes.func,
         startListenAllUserMsgs: PropTypes.func,
+        activeSongs: PropTypes.func,
     }
 
     constructor(props) {
@@ -49,12 +50,15 @@ export default class MainPanel extends Component {
     }
 
     renderPlayListDetail() {
-        const { mainPanel: { playListDetail, activePlayList }, playSong, } = this.props;
+        const { mainPanel: { playListDetail, activePlayList }, playSong, activeSongs } = this.props;
         const songs = playListDetail && playListDetail.tracks || [];
         if (songs.length > 0) {
             return (
                 <div>
-                    {songs.map((song, index) => <SongItem key={index} song={song} play={() => playSong(song.id)} />)}
+                    {songs.map((song, index) => <SongItem key={index} song={song} play={() => {
+                        playSong(song.id);
+                        activeSongs(songs);
+                        }} />)}
                 </div>
             )
         }

@@ -11,6 +11,7 @@ const ActionTypes = {
     approveListenWithRequest: 'approveListenWithRequest',
     rejectListenWithRequest: 'rejectListenWithRequest',
     approvaledListenWith: 'approvaledListenWith',
+    activeSongs: 'activeSongs',
 };
 
 export const Actions = {
@@ -21,6 +22,7 @@ export const Actions = {
     requestToListenWith: (id) => ({ type: ActionTypes.requestToListenWith, id }),
     forgetListenWith: () => ({ type: ActionTypes.forgetListenWith }),
     startListenAllUserMsgs: (id) => ({ type: ActionTypes.startListenAllUserMsgs, id }),
+    activeSongs: (songs) => ({type: ActionTypes.activeSongs, songs}),
 }
 
 export default ActionTypes;

@@ -2,7 +2,7 @@ import _ from 'lodash';
 import Actions from './actions'
 
 const { playSong, nextSong, receivePlayList, loadPlayList, receivePlayListDetail, requestToListenWith,
-    forgetListenWith, approveListenWithRequest, approvaledListenWith } = Actions;
+    forgetListenWith, approveListenWithRequest, approvaledListenWith, activeSongs } = Actions;
 
 export function player(state = { activeSongId: null, activeSongList: [] }, action) {
     const type = action.type;
@@ -15,6 +15,8 @@ export function player(state = { activeSongId: null, activeSongList: [] }, actio
             const activeIndex = activeSongList.findIndex(s => s.id === activeSongId);
             return { ...state, activeSongId: _.get(activeSongList[activeIndex + 1], 'id') }
         }
+        case activeSongs:
+            return { ...state, activeSongList: action.songs }
         default:
             return state
     }
